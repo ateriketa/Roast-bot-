@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Roast Bot 🤖🔥</title>
+  <style>
+    body {
+      background: #222;
+      color: #eee;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    #chat {
+      width: 400px;
+      max-width: 90vw;
+      height: 300px;
+      background: #333;
+      border-radius: 8px;
+      padding: 10px;
+      overflow-y: auto;
+      box-shadow: 0 0 10px #ff4d4d;
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .message {
+      padding: 8px 12px;
+      border-radius: 15px;
+      max-width: 80%;
+      word-wrap: break-word;
+    }
+    .user {
+      background: #4caf50;
+      align-self: flex-end;
+    }
+    .bot {
+      background: #ff3b3b;
+      align-self: flex-start;
+    }
+    #input-area {
+      display: flex;
+      width: 400px;
+      max-width: 90vw;
+    }
+    #userInput {
+      flex: 1;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 8px 0 0 8px;
+      border: none;
+      outline: none;
+    }
+    #sendBtn {
+      padding: 10px 20px;
+      background: #ff3b3b;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    #sendBtn:hover {
+      background: #e22b2b;
+    }
+  </style>
+</head>
+<body>
+  <h1>Roast Bot 🤖🔥</h1>
+  <div id="chat"></div>
+  <div id="input-area">
+    <input id="userInput" type="text" placeholder="Say something..." autocomplete="off" />
+    <button id="sendBtn">Roast!</button>
+  </div>
+
+  <script>
+    const chat = document.getElementById('chat');
+    const userInput = document.getElementById('userInput');
+    const sendBtn = document.getElementById('sendBtn');
+
+    const roasts = [
+      "You're like a cloud. When you disappear, it's a beautiful day.",
+      "If I wanted to kill myself, I’d climb your ego and jump to your IQ.",
+      "You're as useless as the 'ueue' in 'queue'.",
+      "You bring everyone so much joy… when you leave the room.",
+      "You have something on your chin… no, the third one down.",
+      "You're the reason the gene pool needs a lifeguard.",
+      "You’re like a software update. Whenever I see you, I think, 'Not now.'",
+      "You’re as bright as a black hole.",
+      "I’d explain it to you but I left my English-to-Dingbat dictionary at home.",
+      "You have the perfect face for radio."
+    ];
+
+    function addMessage(text, sender) {
+      const msg = document.createElement('div');
+      msg.textContent = text;
+      msg.classList.add('message', sender);
+      chat.appendChild(msg);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function getRandomRoast() {
+      return roasts[Math.floor(Math.random() * roasts.length)];
+    }
+
+    function handleSend() {
+      const userText = userInput.value.trim();
+      if (!userText) return;
+      addMessage(userText, 'user');
+      userInput.value = '';
+      setTimeout(() => {
+        addMessage(getRandomRoast(), 'bot');
+      }, 800);
+    }
+
+    sendBtn.addEventListener('click', handleSend);
+    userInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        handleSend();
+      }
+    });
+  </script>
+</body>
+</html>
