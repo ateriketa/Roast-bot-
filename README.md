@@ -1,1 +1,1 @@
-![SELECT-YOUR-REWARD](https://i.ibb.co/dYJwFjm/SELECT-YOUR-REWARD.png)
+![eventprize](https://i.ibb.co/M5sMq6NJ/eventprize.png)
